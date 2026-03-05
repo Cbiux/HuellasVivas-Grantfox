@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
+import compression from 'compression';
 
 
 import { AppModule } from './app.module';
@@ -15,12 +16,11 @@ async function bootstrap() {
 
   // Security Middleware
   app.use(helmet());
-  const compression = require('compression');
   app.use(compression());
 
   // CORS config
   app.enableCors({
-    origin: process.env.ALLOWED_ORIGINS?.split(','),
+    origin: (process.env.ALLOWED_ORIGINS as string).split(','),
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true,
   });
