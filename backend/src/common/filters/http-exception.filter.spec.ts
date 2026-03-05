@@ -1,7 +1,5 @@
-import {
-    AppException,
-    HttpExceptionFilter,
-} from './http-exception.filter';
+import { HttpExceptionFilter } from './http-exception.filter';
+import { AppException } from '../exceptions/app.exception';
 import {
     ArgumentsHost,
     HttpException,
